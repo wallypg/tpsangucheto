@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ver Stock</title>
+<title>Agregar al Carrito</title>
 
 <!-- Bootstrap -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -44,25 +44,7 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-
-    <h1>LISTA DE INGREDIENTES</h1>
-	<table border="1">
-		<tr>
-			<td>INGREDIENTE</td>
-			<td>PRECIO</td>
-			<td>TIPO</td>
-			<td>STOCK</td>
-		</tr>
-		<c:forEach var="ingrediente" items="${mapaIngredientes}">
-			<tr>
-				<td>${ingrediente.nombre}</td>
-				<td>${ingrediente.precio}</td>
-				<td>${ingrediente.tipo}</td>
-				
-			</tr>
-		</c:forEach>
-	</table>	
-
+				<p>bien</p>
 			</div>
 		</section>
 		
