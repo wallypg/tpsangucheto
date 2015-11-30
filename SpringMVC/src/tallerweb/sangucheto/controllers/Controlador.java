@@ -19,7 +19,7 @@ import tallerweb.sangucheto.modelo.Stock;
 @RequestMapping("/sucursal")
 public class Controlador {
 	
-	private Stock gondola= Stock.getInstance();
+	private Stock deposito= Stock.getInstance();
 	
 	//Muestra la vista para crear productos
 	@RequestMapping("/altaProducto")
@@ -30,10 +30,9 @@ public class Controlador {
 	//Crea el producto y lo guarda en el stock general
 	@RequestMapping("/crearProducto")
 	public String crearProducto(Ingrediente nuevoIngrediente, Model modeloDeProductos){
-		//CAMBIAR ESTA VISTA AL TERMINAR EL TP
 		String resultado= "/sucursal/vistaErrores";
 		
-		if(gondola.agregarIngrediente(nuevoIngrediente)){
+		if(deposito.agregarIngrediente(nuevoIngrediente)){
 			modeloDeProductos.addAttribute("ingrediente", nuevoIngrediente);
 			resultado= "sucursal/vistaBien";
 		}
@@ -63,7 +62,7 @@ public class Controlador {
 	@RequestMapping("/verStock")
 	public ModelAndView verStock(){
 		ModelMap miLista = new ModelMap();		
-		miLista.put("mapaIngredientes",gondola.listarIngredientesDisponibles());
+		miLista.put("mapaIngredientes",deposito.obtenerStock());
 		
 		ModelAndView miVista= new ModelAndView();
 		miVista.addAllObjects(miLista);

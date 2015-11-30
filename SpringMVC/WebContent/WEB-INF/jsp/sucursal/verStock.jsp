@@ -49,16 +49,12 @@
 	<table border="1">
 		<tr>
 			<td>INGREDIENTE</td>
-			<td>PRECIO</td>
-			<td>TIPO</td>
 			<td>STOCK</td>
 		</tr>
-		<c:forEach var="ingrediente" items="${mapaIngredientes}">
+		<c:forEach items="${mapaIngredientes}" var="ingrediente">
 			<tr>
-				<td>${ingrediente.nombre}</td>
-				<td>${ingrediente.precio}</td>
-				<td>${ingrediente.tipo}</td>
-				
+				<td>${ingrediente.key.nombre}</td>
+				<td>${ingrediente.value}</td>
 			</tr>
 		</c:forEach>
 	</table>	
