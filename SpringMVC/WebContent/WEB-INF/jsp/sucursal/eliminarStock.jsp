@@ -44,7 +44,17 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-				<p>eliminar stock</p>
+				<h1>Eliminar Stock</h1>
+				<p>¿Desea eliminar del stock el producto ${datosIngrediente.nombre} ?</p>
+				
+				<form action="/SpringMVC/sucursal/realizarEliminarStock.do" method="POST">
+					<input type="hidden" name="nombre" value="${datosIngrediente.nombre}">
+						<input type="hidden" name="precio" value="${datosIngrediente.precio}">
+						<input type="hidden" name="tipo" value="${datosIngrediente.tipo}">
+						<input type="submit" value="Si">
+				</form>
+				
+				<a href="/SpringMVC/sucursal/verStock.do">No</a>
 			</div>
 		</section>
 		

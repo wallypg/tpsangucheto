@@ -44,7 +44,27 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-				<p>agregar stock</p>
+			<h1>AGREGAR STOCK</h1>
+				<table border="1">
+					<tr>
+						<td>NOMBRE</td>
+						<td>STOCK ACTUAL</td>
+						<td>CANTIDAD A AGREGAR</td>
+						<td>AGREGAR</td>
+					</tr>
+					<tr>
+						<form action="/SpringMVC/sucursal/realizarAgregarStock.do" method="POST">
+							<input type="hidden" name="nombre" value="${datosDelIngrediente.nombre}">
+							<input type="hidden" name="precio" value="${datosDelIngrediente.precio}">
+							<input type="hidden" name="tipo" value="${datosDelIngrediente.tipo}">
+							
+							<td>${datosDelIngrediente.nombre}</td>
+							<td>${stockActual}</td>
+							<td><input type="text" name="cantidadAgregar"></td>
+							<td><input type="submit" value="Agregar"></td>
+						</form>
+					</tr>
+				</table>
 			</div>
 		</section>
 		

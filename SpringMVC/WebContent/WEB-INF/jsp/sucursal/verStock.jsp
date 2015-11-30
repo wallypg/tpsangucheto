@@ -49,12 +49,39 @@
 	<table border="1">
 		<tr>
 			<td>INGREDIENTE</td>
+			<td>PRECIO</td>
+			<td>TIPO</td>
 			<td>STOCK</td>
+			<td>AGREGAR STOCK</td>
+			<td>ELIMINAR STOCK</td>
 		</tr>
 		<c:forEach items="${mapaIngredientes}" var="ingrediente">
 			<tr>
 				<td>${ingrediente.key.nombre}</td>
+				<td>${ingrediente.key.precio}</td>
+				<td>${ingrediente.key.tipo}</td>
 				<td>${ingrediente.value}</td>
+				<td>
+					<form action="/SpringMVC/sucursal/agregarStock.do" method="POST">
+						<input type="hidden" name="nombre" value="${ingrediente.key.nombre}">
+						<input type="hidden" name="precio" value="${ingrediente.key.precio}">
+						<input type="hidden" name="tipo" value="${ingrediente.key.tipo}">
+						<input type="submit" value="Agregar">
+					</form>
+				</td>
+				<td>
+					<form action="/SpringMVC/sucursal/eliminarStock.do" method="POST">
+						<input type="hidden" name="nombre" value="${ingrediente.key.nombre}">
+						<input type="hidden" name="precio" value="${ingrediente.key.precio}">
+						<input type="hidden" name="tipo" value="${ingrediente.key.tipo}">
+						<input type="submit" value="Eliminar">
+					</form>
+				</td>
+				
+				<!-- 
+				<td><a href="/agregarStock.do?clave=${ingrediente.key.nombre}">Agregar</a></td>
+				<td><a href="/eliminarStock.do?clave=${ingrediente.key.nombre}">Eliminar</a></td>
+				 -->
 			</tr>
 		</c:forEach>
 	</table>	

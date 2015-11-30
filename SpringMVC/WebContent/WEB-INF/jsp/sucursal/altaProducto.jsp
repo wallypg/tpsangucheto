@@ -44,7 +44,7 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-				<form action="/SpringMVC/sucursal/crearProducto.do" method="get">
+				<form action="/SpringMVC/sucursal/crearProducto.do" method="POST">
 					<div class="form-group">
 						<label for="nombre">Nombre</label>
 						<input type="text" name="nombre">

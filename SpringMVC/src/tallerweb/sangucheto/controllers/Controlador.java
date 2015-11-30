@@ -39,26 +39,7 @@ public class Controlador {
 		return resultado;
 	}
 	
-	/*
-	 * @RequestMapping("/crearProducto")
-	public String crearProducto(Ingrediente nuevoIngrediente, HttpSession session, Model modeloIngredientes){
-	Stock.getInstance().agregarIngrediente(nuevoIngrediente);
-	Map mapaIngredientes = Stock.getInstance().obtenerStock();
-    modeloIngredientes.addAttribute(mapaIngredientes);
-	return "sucursal/verStock";
-	}
-	*/
-	
-//    @RequestMapping("/listaIngredientes")
-//    public String listarIngredientes(Model modeloIngredientes){
-//    Map mapaIngredientes = Stock.getInstance().obtenerStock();
-//    modeloIngredientes.addAttribute(mapaIngredientes);
-//    return "sucursal/verStock";
-//    }
-	
-	
-	//Se pide el stock, no estoy seguro si usar el metodo listarIngredientesDisponibles()
-	// o usar obtenerStock() xq este ultimo metodo no dice el precio y tipo (no lo probe)
+	//Listado de Stock de cada producto
 	@RequestMapping("/verStock")
 	public ModelAndView verStock(){
 		ModelMap miLista = new ModelMap();		
@@ -71,14 +52,55 @@ public class Controlador {
 		return miVista;
 	}
 	
+	//Carga en la vista los datos del ingrediente elegido para agregarle stock
+	@RequestMapping("/agregarStock")
+	public ModelAndView agregarStock(Ingrediente ingrediente){
+		ModelMap mostrarEnLaVista = new ModelMap();
+		mostrarEnLaVista.put("datosDelIngrediente", ingrediente);
+		mostrarEnLaVista.put("stockActual", deposito.obtenerStockDisponible(ingrediente));
+		
+		
+		ModelAndView laVista= new ModelAndView();
+		laVista.addAllObjects(mostrarEnLaVista);
+		laVista.setViewName("sucursal/agregarStock");
+		
+		return laVista;
+	}
+	
+	//Agrega la cantidad de stock indicado
+	@RequestMapping("/realizarAgregarStock")
+	public String realizarAgregarStock(Ingrediente ingrediente, Integer cantidadAgregar){
+		String resultado="/sucursal/vistaErrores";
+		
+		if(deposito.agregarStock(ingrediente, cantidadAgregar)){
+			resultado="/sucursal/vistaBien";
+		}
+		
+		return resultado;
+	}
+	
+	//Ver la vista eliminarStock
+	@RequestMapping("/eliminarStock")
+	public String eliminarStock(Ingrediente ingrediente, Model modelo){
+		modelo.addAttribute("datosIngrediente", ingrediente);
+		return "sucursal/eliminarStock";
+	}
+	
+	//Realiza la eliminacion del producto
+	@RequestMapping("/realizarEliminarStock")
+	public String realizarEliminarStock(Ingrediente ingrediente){
+		String resultado= "/sucursal/vistaErrores";
+		
+		if(deposito.eliminarIngrediente(ingrediente)){
+			resultado="/sucursal/vistaBien";
+		}
+		
+		return resultado;
+	}
+	
 	@RequestMapping("/agregarCarrito")
 	public String agregarCarrito(){
 		return "sucursal/agregarCarrito";
-	}
-	
-	@RequestMapping("/eliminarStock")
-	public String eliminarStock(){
-		return "sucursal/eliminarStock";
 	}
 	
 	@RequestMapping("/finalCarrito")
