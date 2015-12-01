@@ -27,6 +27,11 @@ public class Sanguchetto {
 	 */
 	public void agregarIngrediente(Ingrediente ingrediente){
 		// Implementar
+		//este metodo creo que es para agregar a una lista el ingrediente comprado
+		//con el metodo comprarIngrediente()
+		if(!this.ingredientes.contains(ingrediente)){
+			ingredientes.add(ingrediente);
+		}
 	}
 	
 	/**

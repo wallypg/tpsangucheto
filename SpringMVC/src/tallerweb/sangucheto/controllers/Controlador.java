@@ -1,18 +1,12 @@
 package tallerweb.sangucheto.controllers;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import tallerweb.sangucheto.modelo.Ingrediente;
+import tallerweb.sangucheto.modelo.Sanguchetto;
 import tallerweb.sangucheto.modelo.Stock;
 
 @Controller
@@ -20,6 +14,8 @@ import tallerweb.sangucheto.modelo.Stock;
 public class Controlador {
 	
 	private Stock deposito= Stock.getInstance();
+	private Sanguchetto sanguche= Sanguchetto.getInstance();
+	private Double precioAcumulado= 0.0;
 	
 	//Muestra la vista para crear productos
 	@RequestMapping("/altaProducto")
@@ -99,12 +95,28 @@ public class Controlador {
 	}
 	
 	@RequestMapping("/agregarCarrito")
-	public String agregarCarrito(){
+	public String agregarCarrito(Model modelo){
+		modelo.addAttribute("productos", deposito.obtenerStock());
+		modelo.addAttribute("precioParcial", this.precioAcumulado);
 		return "sucursal/agregarCarrito";
+	}
+
+	//Agregar un producto al sanguchetto desde la vista agregarCarrito
+	@RequestMapping("/realizarComprarIngrediente")
+	public String realizarComprarIngrediente(Ingrediente ingrediente, Integer cantidadUnidades, Model modelo){
+		if(deposito.comprarIngrediente(ingrediente, cantidadUnidades)){
+			sanguche.agregarIngrediente(ingrediente);
+			Double precioDeCompra= ingrediente.getPrecio() * cantidadUnidades;
+			this.precioAcumulado= this.precioAcumulado + precioDeCompra;
+			modelo.addAttribute("precioAcumulado", this.precioAcumulado);
+			modelo.addAttribute("productos", deposito.obtenerStock());
+		}
+		return "/sucursal/agregarCarrito";
 	}
 	
 	@RequestMapping("/finalCarrito")
-	public String finalCarrito(){
+	public String finalCarrito(Double precioFinal, Model modelo){
+		modelo.addAttribute("precioFinal", precioFinal);
 		return "sucursal/finalCarrito";
 	}
 	

@@ -44,7 +44,8 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-				<p>carrito final</p>
+				<h1>Carrito Final</h1>
+				<h3>Precio Final: ${precioFinal}</h3>
 			</div>
 		</section>
 		

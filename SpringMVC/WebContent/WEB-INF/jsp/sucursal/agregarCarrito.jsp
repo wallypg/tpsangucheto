@@ -44,7 +44,49 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-				<p>agregar al carrito</p>
+				<h1>Agregar productos al Carrito</h1>
+				<h3>Precio Total (despues cambiarlo): ${precioAcumulado}</h3>
+				<h3>Precio Total con descuento: </h3>
+				<h3>Ahorro acumulado: </h3>
+				
+				<table border="1">
+					<tr>
+						<td>Ingrediente</td>
+						<td>Tipo</td>
+						<td>Precio</td>
+						<td>Unidades</td>
+						<td>Comprar</td>
+					</tr>
+					<c:forEach items="${productos}" var="cadaProducto">
+						<tr>
+						<form action="/SpringMVC/sucursal/realizarComprarIngrediente.do" method="POST">
+							<td>${cadaProducto.key.nombre}</td>
+ 								<input type="hidden" name="nombre" value="${cadaProducto.key.nombre}">
+ 							<td>${cadaProducto.key.tipo}</td>
+ 								<input type="hidden" name="tipo" value="${cadaProducto.key.tipo}">
+ 							<td>${cadaProducto.key.precio}</td>
+ 								<input type="hidden" name="precio" value="${cadaProducto.key.precio}">
+ 							<td>
+ 								<select name="cantidadUnidades">
+ 									<option value="">Seleccionar cantidad</option>
+									<c:forEach var="i" begin="0" end="${cadaProducto.value}">
+									   <option value="${i}">${i}</option>
+									</c:forEach>
+ 								</select>
+							</td>
+							<td><input type="submit" value="Agregar"></td>
+						</form>
+						</tr>
+					</c:forEach>
+				</table>
+				
+				<form action="" method="POST">
+					<input type="submit" value="Cancelar">
+				</form>
+				<form action="/SpringMVC/sucursal/finalCarrito.do" method="POST">
+					<input type="hidden" name="precioFinal" value="${precioAcumulado}">
+					<input type="submit" value="Confirmar">
+				</form>
 			</div>
 		</section>
 		
