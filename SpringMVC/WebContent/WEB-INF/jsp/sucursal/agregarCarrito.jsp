@@ -45,7 +45,7 @@
 		<section class="main container">
 			<div class="row">
 				<h1>Agregar productos al Carrito</h1>
-				<h3>Precio Total (despues cambiarlo): ${precioAcumulado}</h3>
+ 				<h3>Precio Total (despues cambiarlo): ${precioAcumulado}</h3>
 				<h3>Precio Total con descuento: </h3>
 				<h3>Ahorro acumulado: </h3>
 				
@@ -80,11 +80,10 @@
 					</c:forEach>
 				</table>
 				
-				<form action="" method="POST">
+				<form action="/SpringMVC/sucursal/cancelarCarrito.do" method="POST">
 					<input type="submit" value="Cancelar">
 				</form>
 				<form action="/SpringMVC/sucursal/finalCarrito.do" method="POST">
-					<input type="hidden" name="precioFinal" value="${precioAcumulado}">
 					<input type="submit" value="Confirmar">
 				</form>
 			</div>

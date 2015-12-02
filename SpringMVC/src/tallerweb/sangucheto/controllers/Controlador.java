@@ -15,7 +15,6 @@ public class Controlador {
 	
 	private Stock deposito= Stock.getInstance();
 	private Sanguchetto sanguche= Sanguchetto.getInstance();
-	private Double precioAcumulado= 0.0;
 	
 	//Muestra la vista para crear productos
 	@RequestMapping("/altaProducto")
@@ -97,26 +96,42 @@ public class Controlador {
 	@RequestMapping("/agregarCarrito")
 	public String agregarCarrito(Model modelo){
 		modelo.addAttribute("productos", deposito.obtenerStock());
-		modelo.addAttribute("precioParcial", this.precioAcumulado);
+		modelo.addAttribute("precioAcumulado", sanguche.getPrecio());
 		return "sucursal/agregarCarrito";
 	}
 
 	//Agregar un producto al sanguchetto desde la vista agregarCarrito
 	@RequestMapping("/realizarComprarIngrediente")
 	public String realizarComprarIngrediente(Ingrediente ingrediente, Integer cantidadUnidades, Model modelo){
+		Integer i;
+		
 		if(deposito.comprarIngrediente(ingrediente, cantidadUnidades)){
-			sanguche.agregarIngrediente(ingrediente);
-			Double precioDeCompra= ingrediente.getPrecio() * cantidadUnidades;
-			this.precioAcumulado= this.precioAcumulado + precioDeCompra;
-			modelo.addAttribute("precioAcumulado", this.precioAcumulado);
+			for(i=1; i<= cantidadUnidades; i++){
+				sanguche.agregarIngrediente(ingrediente);
+			}	
+			
+			modelo.addAttribute("precioAcumulado", sanguche.getPrecio());
 			modelo.addAttribute("productos", deposito.obtenerStock());
 		}
 		return "/sucursal/agregarCarrito";
 	}
 	
+	//Cancela los productos comprados y los devuelve al stock
+	@RequestMapping("/cancelarCarrito")
+	public String cancelarCarrito(){
+		//todavia no funciona
+		sanguche.vaciar();
+		
+		return "/sucursal/agregarCarrito";
+	}
+	
+	//Muestra como quedo el carrito
 	@RequestMapping("/finalCarrito")
-	public String finalCarrito(Double precioFinal, Model modelo){
-		modelo.addAttribute("precioFinal", precioFinal);
+	public String finalCarrito(Model modelo){
+		modelo.addAttribute("precioFinal", sanguche.getPrecio());
+		Integer cantidadDeCadaProducto = sanguche.verIngredientes().size();
+		
+		
 		return "sucursal/finalCarrito";
 	}
 	

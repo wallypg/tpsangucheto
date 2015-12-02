@@ -1,5 +1,6 @@
 package tallerweb.sangucheto.modelo;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,11 +28,7 @@ public class Sanguchetto {
 	 */
 	public void agregarIngrediente(Ingrediente ingrediente){
 		// Implementar
-		//este metodo creo que es para agregar a una lista el ingrediente comprado
-		//con el metodo comprarIngrediente()
-		if(!this.ingredientes.contains(ingrediente)){
 			ingredientes.add(ingrediente);
-		}
 	}
 	
 	/**
@@ -40,7 +37,19 @@ public class Sanguchetto {
 	 */
 	public List<Ingrediente> verIngredientes(){
 		// Implementar
-		return null;
+		List<Ingrediente> listaTipoIngrediente = new LinkedList();
+		Integer cantidadProductos = ingredientes.size();
+		Integer i;
+		Iterator<Ingrediente> iteradorProductos = ingredientes.iterator();
+		
+		for(i=0; i< cantidadProductos; i++){
+			if(iteradorProductos.hasNext()){
+				if(iteradorProductos.next().getTipo() == TipoIngrediente.INGREDIENTE){
+					listaTipoIngrediente.add(iteradorProductos.next());
+				}
+			}
+		}
+		return listaTipoIngrediente;
 	}
 	
 	/**
@@ -58,6 +67,17 @@ public class Sanguchetto {
 	 */
 	public Double getPrecio(){
 		// Implementar
-		return null;
+		Integer i;
+		Integer cantidadDeProductos= ingredientes.size();
+		Double precioTotal= 0.0;
+		Iterator<Ingrediente> iterador = ingredientes.iterator();
+		
+		for(i=1; i<= cantidadDeProductos; i++){
+			if(iterador.hasNext()){
+				precioTotal= precioTotal + iterador.next().getPrecio();
+			}
+		}
+		
+		return precioTotal;
 	}
 }
