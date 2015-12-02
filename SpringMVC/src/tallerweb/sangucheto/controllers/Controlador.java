@@ -1,5 +1,9 @@
 package tallerweb.sangucheto.controllers;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -128,9 +132,31 @@ public class Controlador {
 	//Muestra como quedo el carrito
 	@RequestMapping("/finalCarrito")
 	public String finalCarrito(Model modelo){
+		List<Ingrediente> listaIngredientes= sanguche.verIngredientes();
+//		Integer cantidadDeCadaProducto = sanguche.verIngredientes().size();
+//		Integer i;
+////		Iterator<Ingrediente> iteradorProductos = sanguche.verIngredientes().iterator();
+//		Iterator<Ingrediente> iteradorProductos = listaIngredientes.iterator();
+//		HashMap<Ingrediente, Integer> tablaRepeticiones = new HashMap<Ingrediente, Integer>();
+//		
+//		//lista de ingredientes comprados
+//		for(i=1; i<= cantidadDeCadaProducto; i++){
+//			if(iteradorProductos.hasNext()){
+//					if(!tablaRepeticiones.containsKey(iteradorProductos.next())){
+//						tablaRepeticiones.put(iteradorProductos.next(), 1);
+//					}
+////						}else{
+////						Integer contadorRepeticiones= tablaRepeticiones.get(iteradorProductos.next());
+////						tablaRepeticiones.put(iteradorProductos.next(), contadorRepeticiones + 1);
+////				}
+//			}
+//		}
+//		
+		//Productos comprados separado por repetidos
+//		modelo.addAttribute("mapaProductos", tablaRepeticiones);
+		modelo.addAttribute("mapaProductos", listaIngredientes);
+		//Precio final
 		modelo.addAttribute("precioFinal", sanguche.getPrecio());
-		Integer cantidadDeCadaProducto = sanguche.verIngredientes().size();
-		
 		
 		return "sucursal/finalCarrito";
 	}

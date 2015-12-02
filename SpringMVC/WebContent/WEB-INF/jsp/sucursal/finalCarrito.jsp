@@ -46,25 +46,35 @@
 			<div class="row">
 				<h1>Carrito Final</h1>
 				<h3>Precio Final: ${precioFinal}</h3>
+				
+				
+				
+				<c:forEach items="${mapaProductos}" var="cadaProducto">
+					<br>
+				-	${cadaProducto.nombre} - 
+					
+<%-- 					${cadaProducto.value} --%>
+					<br>
+				</c:forEach>
 			</div>
 		</section>
 		
 		<!-- Footer -->
-		<footer class="jumbotron" id="jumbotronFooter">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12" id="links">
-                        <ul class="list-inline text-center">
-                            <li>Materia: Taller Web 1</li>
-                            <li>TP Final: Sanguchetto</li>
-                            <li>Alumnos: Pérez Graciano, Walther - Coronel, Pablo</li>
-                            <li>Universidad: UNLaM</li>
-                            <li>Año: 2015</li>
-                        </ul>
-                    </div>
-				</div>
-			</div>
-		</footer>
+<!-- 		<footer class="jumbotron" id="jumbotronFooter"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="row"> -->
+<!-- 					<div class="col-xs-12" id="links"> -->
+<!--                         <ul class="list-inline text-center"> -->
+<!--                             <li>Materia: Taller Web 1</li> -->
+<!--                             <li>TP Final: Sanguchetto</li> -->
+<!--                             <li>Alumnos: Pérez Graciano, Walther - Coronel, Pablo</li> -->
+<!--                             <li>Universidad: UNLaM</li> -->
+<!--                             <li>Año: 2015</li> -->
+<!--                         </ul> -->
+<!--                     </div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</footer> -->
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="../js/jquery-1.11.3.min.js"></script>

@@ -37,7 +37,7 @@ public class Sanguchetto {
 	 */
 	public List<Ingrediente> verIngredientes(){
 		// Implementar
-		List<Ingrediente> listaTipoIngrediente = new LinkedList();
+		List<Ingrediente> listaTipoIngrediente = new LinkedList<Ingrediente>();
 		Integer cantidadProductos = ingredientes.size();
 		Integer i;
 		Iterator<Ingrediente> iteradorProductos = ingredientes.iterator();
