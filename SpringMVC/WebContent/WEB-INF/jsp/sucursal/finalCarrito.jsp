@@ -48,33 +48,45 @@
 				<h3>Precio Final: ${precioFinal}</h3>
 				
 				
-				
-				<c:forEach items="${mapaProductos}" var="cadaProducto">
-					<br>
-				-	${cadaProducto.nombre} - 
+				<table border="1">
+					<tr>
+						<td colspan="4">Ingredientes</td>
+					</tr>
+					<tr>
+						<td>Tipo</td>
+						<td>Nombre</td>
+						<td>Precio</td>
+						<td>Unidades</td>
+					</tr>
 					
-<%-- 					${cadaProducto.value} --%>
-					<br>
-				</c:forEach>
+					<c:forEach items="${mapaProductosIngrediente}" var="cadaIngrediente">
+						<tr>
+							<td>${cadaIngrediente.key.tipo}</td>
+							<td>${cadaIngrediente.key.nombre}</td>
+							<td>${cadaIngrediente.key.precio}</td>
+							<td>${cadaIngrediente.value}</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</section>
 		
 		<!-- Footer -->
-<!-- 		<footer class="jumbotron" id="jumbotronFooter"> -->
-<!-- 			<div class="container"> -->
-<!-- 				<div class="row"> -->
-<!-- 					<div class="col-xs-12" id="links"> -->
-<!--                         <ul class="list-inline text-center"> -->
-<!--                             <li>Materia: Taller Web 1</li> -->
-<!--                             <li>TP Final: Sanguchetto</li> -->
-<!--                             <li>Alumnos: Pérez Graciano, Walther - Coronel, Pablo</li> -->
-<!--                             <li>Universidad: UNLaM</li> -->
-<!--                             <li>Año: 2015</li> -->
-<!--                         </ul> -->
-<!--                     </div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</footer> -->
+		<footer class="jumbotron" id="jumbotronFooter">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12" id="links">
+                        <ul class="list-inline text-center">
+                            <li>Materia: Taller Web 1</li>
+                            <li>TP Final: Sanguchetto</li>
+                            <li>Alumnos: Pérez Graciano, Walther - Coronel, Pablo</li>
+                            <li>Universidad: UNLaM</li>
+                            <li>Año: 2015</li>
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</footer>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="../js/jquery-1.11.3.min.js"></script>

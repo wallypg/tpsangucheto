@@ -132,29 +132,30 @@ public class Controlador {
 	//Muestra como quedo el carrito
 	@RequestMapping("/finalCarrito")
 	public String finalCarrito(Model modelo){
-		List<Ingrediente> listaIngredientes= sanguche.verIngredientes();
-//		Integer cantidadDeCadaProducto = sanguche.verIngredientes().size();
-//		Integer i;
-////		Iterator<Ingrediente> iteradorProductos = sanguche.verIngredientes().iterator();
-//		Iterator<Ingrediente> iteradorProductos = listaIngredientes.iterator();
-//		HashMap<Ingrediente, Integer> tablaRepeticiones = new HashMap<Ingrediente, Integer>();
-//		
-//		//lista de ingredientes comprados
-//		for(i=1; i<= cantidadDeCadaProducto; i++){
-//			if(iteradorProductos.hasNext()){
-//					if(!tablaRepeticiones.containsKey(iteradorProductos.next())){
-//						tablaRepeticiones.put(iteradorProductos.next(), 1);
-//					}
-////						}else{
-////						Integer contadorRepeticiones= tablaRepeticiones.get(iteradorProductos.next());
-////						tablaRepeticiones.put(iteradorProductos.next(), contadorRepeticiones + 1);
-////				}
-//			}
-//		}
-//		
-		//Productos comprados separado por repetidos
-//		modelo.addAttribute("mapaProductos", tablaRepeticiones);
-		modelo.addAttribute("mapaProductos", listaIngredientes);
+		List<Ingrediente> listaTipoIngrediente= sanguche.verIngredientes();
+		Integer cantidadTipoIngrediente = sanguche.verIngredientes().size();
+		Integer i;
+		Iterator<Ingrediente> iteradorTipoIngrediente = listaTipoIngrediente.iterator();
+		HashMap<Ingrediente, Integer> tablaRepeticionesTipoIngrediente = new HashMap<Ingrediente, Integer>();
+		
+		//lista de ingredientes comprados
+		for(i=1; i<= cantidadTipoIngrediente; i++){
+			if(iteradorTipoIngrediente.hasNext()){
+				Ingrediente siguienteIngrediente = iteradorTipoIngrediente.next();
+				
+					if(!tablaRepeticionesTipoIngrediente.containsKey(siguienteIngrediente)){
+						tablaRepeticionesTipoIngrediente.put(siguienteIngrediente, 1);
+					}else{
+						Integer contadorIngredienteRepetido= tablaRepeticionesTipoIngrediente.get(siguienteIngrediente);
+						
+						tablaRepeticionesTipoIngrediente.put(siguienteIngrediente, contadorIngredienteRepetido + 1);
+					}
+			}
+		}
+		
+		//Productos comprados separado por unidades
+		modelo.addAttribute("mapaProductosIngrediente", tablaRepeticionesTipoIngrediente);
+
 		//Precio final
 		modelo.addAttribute("precioFinal", sanguche.getPrecio());
 		

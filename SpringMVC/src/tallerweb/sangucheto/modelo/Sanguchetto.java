@@ -37,18 +37,24 @@ public class Sanguchetto {
 	 */
 	public List<Ingrediente> verIngredientes(){
 		// Implementar
+		//ListaTipoIngrediente: almacena solo los ingredientes del tipo INGREDIENTE
+		//Pueden ser INGREDIENTE o CONDIMENTO
+		
 		List<Ingrediente> listaTipoIngrediente = new LinkedList<Ingrediente>();
 		Integer cantidadProductos = ingredientes.size();
 		Integer i;
 		Iterator<Ingrediente> iteradorProductos = ingredientes.iterator();
 		
-		for(i=0; i< cantidadProductos; i++){
+		for(i=1; i<= cantidadProductos; i++){
 			if(iteradorProductos.hasNext()){
-				if(iteradorProductos.next().getTipo() == TipoIngrediente.INGREDIENTE){
-					listaTipoIngrediente.add(iteradorProductos.next());
+				Ingrediente cadaIngrediente= iteradorProductos.next();
+				
+				if(cadaIngrediente.getTipo() == TipoIngrediente.INGREDIENTE){
+					listaTipoIngrediente.add(cadaIngrediente);
 				}
 			}
 		}
+	
 		return listaTipoIngrediente;
 	}
 	
