@@ -132,6 +132,8 @@ public class Controlador {
 	//Muestra como quedo el carrito
 	@RequestMapping("/finalCarrito")
 	public String finalCarrito(Model modelo){
+		/*********************** Ingredientes ************************/
+		//Tipo ingrediente
 		List<Ingrediente> listaTipoIngrediente= sanguche.verIngredientes();
 		Integer cantidadTipoIngrediente = sanguche.verIngredientes().size();
 		Integer i;
@@ -153,9 +155,34 @@ public class Controlador {
 			}
 		}
 		
-		//Productos comprados separado por unidades
+		/*********************** Condimentos ************************/
+		//Tipo condimento
+		List<Ingrediente> listaTipoCondimento= sanguche.verCondimentos();
+		Integer cantidadTipoCondimento = sanguche.verCondimentos().size();
+		Integer j;
+		Iterator<Ingrediente> iteradorTipoCondimento = listaTipoCondimento.iterator();
+		HashMap<Ingrediente, Integer> tablaRepeticionesTipoCondimento = new HashMap<Ingrediente, Integer>();
+		
+		//lista de condimentos comprados
+		for(j=1; j<= cantidadTipoCondimento; j++){
+			if(iteradorTipoCondimento.hasNext()){
+				Ingrediente siguienteCondimento = iteradorTipoCondimento.next();
+				
+					if(!tablaRepeticionesTipoCondimento.containsKey(siguienteCondimento)){
+						tablaRepeticionesTipoCondimento.put(siguienteCondimento, 1);
+					}else{
+						Integer contadorCondimentoRepetido= tablaRepeticionesTipoCondimento.get(siguienteCondimento);
+						
+						tablaRepeticionesTipoCondimento.put(siguienteCondimento, contadorCondimentoRepetido + 1);
+					}
+			}
+		}
+		
+		/******************** Agregar al modelo ******************/
+		//Ingredientes comprados separado por unidades
 		modelo.addAttribute("mapaProductosIngrediente", tablaRepeticionesTipoIngrediente);
-
+		//Condimentos comprados separado por unidades
+		modelo.addAttribute("mapaProductosCondimento", tablaRepeticionesTipoCondimento);
 		//Precio final
 		modelo.addAttribute("precioFinal", sanguche.getPrecio());
 		

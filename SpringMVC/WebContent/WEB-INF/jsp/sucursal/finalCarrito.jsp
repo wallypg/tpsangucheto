@@ -55,7 +55,7 @@
 					<tr>
 						<td>Tipo</td>
 						<td>Nombre</td>
-						<td>Precio</td>
+						<td>Precio c/u</td>
 						<td>Unidades</td>
 					</tr>
 					
@@ -65,6 +65,25 @@
 							<td>${cadaIngrediente.key.nombre}</td>
 							<td>${cadaIngrediente.key.precio}</td>
 							<td>${cadaIngrediente.value}</td>
+						</tr>
+					</c:forEach>
+					
+					<tr>
+						<td colspan="4">Condimentos</td>
+					</tr>
+					<tr>
+						<td>Tipo</td>
+						<td>Nombre</td>
+						<td>Precio c/u</td>
+						<td>Unidades</td>
+					</tr>
+					
+					<c:forEach items="${mapaProductosCondimento}" var="cadaCondimento">
+						<tr>
+							<td>${cadaCondimento.key.tipo}</td>
+							<td>${cadaCondimento.key.nombre}</td>
+							<td>${cadaCondimento.key.precio}</td>
+							<td>${cadaCondimento.value}</td>
 						</tr>
 					</c:forEach>
 				</table>
