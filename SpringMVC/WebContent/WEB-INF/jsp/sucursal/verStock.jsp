@@ -46,14 +46,14 @@
 			<div class="row">
 
     <h1>LISTA DE INGREDIENTES</h1>
-	<table border="1">
+	<table border="1" style="text-align:center;">
 		<tr>
-			<td>INGREDIENTE</td>
-			<td>PRECIO</td>
-			<td>TIPO</td>
-			<td>STOCK</td>
-			<td>AGREGAR STOCK</td>
-			<td>ELIMINAR STOCK</td>
+			<td style="padding:0 6px 0 6px;">INGREDIENTE</td>
+			<td style="padding:0 6px 0 6px;">PRECIO</td>
+			<td style="padding:0 35px 0 35px;">TIPO</td>
+			<td style="padding:0 6px 0 6px;">STOCK</td>
+			<td style="padding:0 6px 0 6px;">AGREGAR STOCK</td>
+			<td style="padding:0 6px 0 6px;">ELIMINAR STOCK</td>
 		</tr>
 		<c:forEach items="${mapaIngredientes}" var="ingrediente">
 			<tr>
@@ -90,7 +90,7 @@
 		</section>
 		
 		<!-- Footer -->
-		<footer class="jumbotron" id="jumbotronFooter">
+		<footer style="position:absolute;bottom:0px;width:100%;margin-bottom:0px;" class="jumbotron" id="jumbotronFooter">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12" id="links">

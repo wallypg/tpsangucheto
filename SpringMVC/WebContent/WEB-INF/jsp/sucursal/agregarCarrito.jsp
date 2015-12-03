@@ -90,7 +90,7 @@
 		</section>
 		
 		<!-- Footer -->
-		<footer class="jumbotron" id="jumbotronFooter">
+		<footer style="position:absolute;bottom:0px;width:100%;margin-bottom:0px;" class="jumbotron" id="jumbotronFooter">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12" id="links">
