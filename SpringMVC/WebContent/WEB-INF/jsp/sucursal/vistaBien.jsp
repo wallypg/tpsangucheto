@@ -44,7 +44,7 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-				<p>bien</p>
+				<p>Operación exitosa</p>
 			</div>
 		</section>
 		
