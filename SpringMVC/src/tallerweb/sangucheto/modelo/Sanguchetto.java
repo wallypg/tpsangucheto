@@ -20,6 +20,7 @@ public class Sanguchetto {
 	 */
 	public void vaciar(){
 		// Implementar
+		ingredientes.clear();
 	}
 	
 	/**

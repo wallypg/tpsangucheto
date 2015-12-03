@@ -159,7 +159,7 @@ public class Controlador {
 			}
 		}
 		
-	//	sanguche.vaciar();
+		sanguche.vaciar();
 		modelo.addAttribute("productos", deposito.obtenerStock());
 		modelo.addAttribute("precioAcumulado", sanguche.getPrecio());
 		
