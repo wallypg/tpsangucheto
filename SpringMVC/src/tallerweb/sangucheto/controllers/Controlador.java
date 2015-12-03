@@ -120,155 +120,75 @@ public class Controlador {
 		return "/sucursal/agregarCarrito";
 	}
 	
-	//Cancela los productos comprados y los devuelve al stock
-	@RequestMapping("/cancelarCarrito")
-	public String cancelarCarrito(){
-		//todavia no funciona
-		sanguche.vaciar();
-		
-		return "/sucursal/agregarCarrito";
-	}
-	
 	//Muestra como quedo el carrito
 	@RequestMapping("/finalCarrito")
 	public String finalCarrito(Model modelo){
-		/*********************** Ingredientes ************************/
 		//Tipo ingrediente
 		List<Ingrediente> listaTipoIngrediente= sanguche.verIngredientes();
-		Integer cantidadTipoIngrediente = sanguche.verIngredientes().size();
-		Integer i;
-		Iterator<Ingrediente> iteradorTipoIngrediente = listaTipoIngrediente.iterator();
-		HashMap<Ingrediente, Integer> tablaRepeticionesTipoIngrediente = new HashMap<Ingrediente, Integer>();
+		HashMap<Ingrediente, Integer> comprasPorIngrediente = this.comprasPorProducto(listaTipoIngrediente);
 		
-		//lista de ingredientes comprados
-		for(i=1; i<= cantidadTipoIngrediente; i++){
-			if(iteradorTipoIngrediente.hasNext()){
-				Ingrediente siguienteIngrediente = iteradorTipoIngrediente.next();
-				
-					if(!tablaRepeticionesTipoIngrediente.containsKey(siguienteIngrediente)){
-						tablaRepeticionesTipoIngrediente.put(siguienteIngrediente, 1);
-					}else{
-						Integer contadorIngredienteRepetido= tablaRepeticionesTipoIngrediente.get(siguienteIngrediente);
-						
-						tablaRepeticionesTipoIngrediente.put(siguienteIngrediente, contadorIngredienteRepetido + 1);
-					}
-			}
-		}
-		
-		/*********************** Condimentos ************************/
 		//Tipo condimento
 		List<Ingrediente> listaTipoCondimento= sanguche.verCondimentos();
-		Integer cantidadTipoCondimento = sanguche.verCondimentos().size();
-		Integer j;
-		Iterator<Ingrediente> iteradorTipoCondimento = listaTipoCondimento.iterator();
-		HashMap<Ingrediente, Integer> tablaRepeticionesTipoCondimento = new HashMap<Ingrediente, Integer>();
+		HashMap<Ingrediente, Integer> comprasPorCondimento = this.comprasPorProducto(listaTipoCondimento);
 		
-		//lista de condimentos comprados
-		for(j=1; j<= cantidadTipoCondimento; j++){
-			if(iteradorTipoCondimento.hasNext()){
-				Ingrediente siguienteCondimento = iteradorTipoCondimento.next();
-				
-					if(!tablaRepeticionesTipoCondimento.containsKey(siguienteCondimento)){
-						tablaRepeticionesTipoCondimento.put(siguienteCondimento, 1);
-					}else{
-						Integer contadorCondimentoRepetido= tablaRepeticionesTipoCondimento.get(siguienteCondimento);
-						
-						tablaRepeticionesTipoCondimento.put(siguienteCondimento, contadorCondimentoRepetido + 1);
-					}
-			}
-		}
-		
-		/******************** Agregar al modelo ******************/
-		//Ingredientes comprados separado por unidades
-		modelo.addAttribute("mapaProductosIngrediente", tablaRepeticionesTipoIngrediente);
-		//Condimentos comprados separado por unidades
-		modelo.addAttribute("mapaProductosCondimento", tablaRepeticionesTipoCondimento);
-		//Precio final
+		modelo.addAttribute("mapaProductosIngrediente", comprasPorIngrediente);
+		modelo.addAttribute("mapaProductosCondimento", comprasPorCondimento);
 		modelo.addAttribute("precioFinal", sanguche.getPrecio());
 		
 		return "sucursal/finalCarrito";
 	}
 	
-	/********************************************************************************/
-	
-	/*FORMULARIO*/
-//	@RequestMapping("/nuevo")
-//	public String nuevoPajaro() {
-//
-//		return "sucursal/nuevo";
-//	}
-	
-//
-//	@RequestMapping("/crear")
-//	public String crear(Pajaro miPajaro , HttpSession session, Model miModelo){
-//		ArrayList lista=(ArrayList)session.getAttribute("listaPajaros");
-//		if(lista==null){
-//			lista = new ArrayList();
-//		}
-//		lista.add(miPajaro);
-//		session.setAttribute("listaPajaros",lista);
-//		miModelo.addAttribute("listaPajaros",lista);
-//		return "sucursal/creado";
-//	}
-//	
-//	@RequestMapping("/borrar")
-//	public String borrar(Integer miPajaro , HttpSession session, Model miModelo){
-//		ArrayList lista=(ArrayList)session.getAttribute("listaPajaros");
-//		lista.remove(miPajaro.intValue());
-//		session.setAttribute("listaPajaros",lista);
-//		miModelo.addAttribute("listaPajaros",lista);
-//		if(lista==null || lista.size() == 0) {
-//			return "sucursal/nuevo";
-//		} else{
-//		return "sucursal/creado";
-//		}
-//	}
-//	
-//	@RequestMapping("/tomarpajaro")
-//	public String tomarpajaro(String nombre,String tipo,boolean activo,Integer indice, HttpSession session, Model miModelo){
-//		
-//		ArrayList lista=(ArrayList)session.getAttribute("listaPajaros");
-//		Pajaro miPajaro = new Pajaro(nombre,tipo,activo); 
-//		
-//		miModelo.addAttribute("miPajaro",miPajaro);
-//		miModelo.addAttribute("indice",indice.intValue());
-//		return "sucursal/editar";
-//	}
-//	
-//	@RequestMapping("/editar")
-//	public String editar(Integer indice,Pajaro miPajaro , HttpSession session, Model miModelo){
-//		ArrayList lista=(ArrayList)session.getAttribute("listaPajaros");
-//		lista.remove(indice.intValue());
-//		lista.add(indice.intValue(),miPajaro);
-//		session.setAttribute("listaPajaros",lista);
-//		miModelo.addAttribute("listaPajaros",lista);
-//		return "sucursal/creado";
-//	}
-	
-	
-	
-	
-	/*
-	@RequestMapping("/crear")
-	public String crear(@RequestParam("nombre") String nombre, @RequestParam("tipo") String tipo,
-			@RequestParam("activo") Boolean activo, Model miModelo) {
-		miModelo.addAttribute("nombre",nombre);
-		miModelo.addAttribute("tipo",tipo);
-		miModelo.addAttribute("activo",activo);
-		return "pajaro/creado";
-	}
-	*/
-	
-	/*	
-	public void crearPajaro(@RequestParam("nombre") String nombre, @RequestParam("tipo") String tipo,
-		@RequestParam("activo") Boolean activo, Model miModelo,HttpSession Session) {
-		Pajaro miPajaro = new Pajaro(nombre, tipo, activo);
-		miModelo.addAttribute("miPajaro" , miPajaro);
-		crear(miPajaro,Session,miModelo);
+	//Cancela los productos comprados y los devuelve al stock
+	@RequestMapping("/cancelarCarrito")
+	public String cancelarCarrito(Model modelo){
+		HashMap<Ingrediente, Integer> comprasPorIngrediente = this.comprasPorProducto(sanguche.verIngredientes());
+		HashMap<Ingrediente, Integer> comprasPorCondimentos = this.comprasPorProducto(sanguche.verCondimentos());
+		Integer cantidadStock = deposito.listarIngredientesDisponibles().size();
+		Iterator<Ingrediente> iteradorStock = deposito.listarIngredientesDisponibles().iterator();
+		Integer i;
 		
+		for(i = 1; i <= cantidadStock; i++){
+			if(iteradorStock.hasNext()){
+				Ingrediente proximoEnStock = iteradorStock.next();
+				
+				if(comprasPorIngrediente.containsKey(proximoEnStock)){
+					deposito.agregarStock(proximoEnStock, comprasPorIngrediente.get(proximoEnStock));
+				}else if(comprasPorCondimentos.containsKey(proximoEnStock)){
+					deposito.agregarStock(proximoEnStock, comprasPorCondimentos.get(proximoEnStock));
+				}
+			}
+		}
+		
+	//	sanguche.vaciar();
+		modelo.addAttribute("productos", deposito.obtenerStock());
+		modelo.addAttribute("precioAcumulado", sanguche.getPrecio());
+		
+		return "/sucursal/agregarCarrito";
 	}
-	*/
-	
-	
+		
+	//Metodo PRIVADO para obtener la cantidad de compras por unidad de cada producto
+	private HashMap<Ingrediente, Integer> comprasPorProducto(List<Ingrediente> lista){
+		Integer cantidadElementos = lista.size();
+		Integer i;
+		Iterator<Ingrediente> iterador = lista.iterator();
+		HashMap<Ingrediente, Integer> tablaFinal = new HashMap<Ingrediente, Integer>();
+		
+		//lista de ingredientes comprados
+		for(i = 1; i <= cantidadElementos; i++){
+			if(iterador.hasNext()){
+				Ingrediente siguiente = iterador.next();
+				
+					if(!tablaFinal.containsKey(siguiente)){
+						tablaFinal.put(siguiente, 1);
+					}else{
+						Integer contadorRepetido= tablaFinal.get(siguiente);
+						
+						tablaFinal.put(siguiente, contadorRepetido + 1);
+					}
+			}
+		}
+		
+		return tablaFinal;
+	}
 
 }

@@ -35,7 +35,6 @@
 							<li><a href="sucursal/altaProducto.do">Crear producto</a></li>
 							<li><a href="sucursal/verStock.do">Stock</a></li>
 							<li><a href="sucursal/agregarCarrito.do">Carrito</a></li>
-							<li><a href="sucursal/nuevo.do">Nuevo pájaro</a></li>
 						</ul>	
 					</div>
 				</div>
