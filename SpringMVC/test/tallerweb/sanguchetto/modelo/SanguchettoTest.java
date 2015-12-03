@@ -59,4 +59,11 @@ public class SanguchettoTest {
 	public void testGetPrecio(){
 		Assert.assertEquals(29.0, unRicoSanguche.getPrecio(), 0.001);
 	}
+	
+	@Test
+	public void testVaciar(){
+		Assert.assertEquals(29.0, unRicoSanguche.getPrecio(), 0.001);
+		unRicoSanguche.vaciar();
+		Assert.assertEquals(0.0, unRicoSanguche.getPrecio(), 0.001);
+	}
 }
