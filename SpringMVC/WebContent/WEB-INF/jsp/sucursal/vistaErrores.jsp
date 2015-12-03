@@ -44,7 +44,7 @@
 		<!-- Contenido -->
 		<section class="main container">
 			<div class="row">
-				<p>salio un error </p>
+				<p>Operación fallida</p>
 			</div>
 		</section>
 		

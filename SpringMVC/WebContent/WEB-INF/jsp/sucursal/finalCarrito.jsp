@@ -50,7 +50,7 @@
 				
 				<table border="1">
 					<tr>
-						<td colspan="4">Ingredientes</td>
+						<td colspan="4" align="center">Ingredientes</td>
 					</tr>
 					<tr>
 						<td>Tipo</td>
@@ -69,7 +69,7 @@
 					</c:forEach>
 					
 					<tr>
-						<td colspan="4">Condimentos</td>
+						<td colspan="4" align="center">Condimentos</td>
 					</tr>
 					<tr>
 						<td>Tipo</td>

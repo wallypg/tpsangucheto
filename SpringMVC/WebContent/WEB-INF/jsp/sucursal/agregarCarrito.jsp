@@ -45,9 +45,7 @@
 		<section class="main container">
 			<div class="row">
 				<h1>Agregar productos al Carrito</h1>
- 				<h3>Precio Total (despues cambiarlo): ${precioAcumulado}</h3>
-				<h3>Precio Total con descuento: </h3>
-				<h3>Ahorro acumulado: </h3>
+ 				<h3>Precio Total: ${precioAcumulado}</h3>
 				
 				<table border="1">
 					<tr>
