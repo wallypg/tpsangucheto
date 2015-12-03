@@ -23,6 +23,7 @@ public class SanguchettoTest {
 
 	@Test
 	public void testAgregarIngrediente(){
+		unRicoSanguche.vaciar();
 		unRicoSanguche.agregarIngrediente(pan);
 		unRicoSanguche.agregarIngrediente(pan);
 		unRicoSanguche.agregarIngrediente(jamon);
@@ -34,11 +35,23 @@ public class SanguchettoTest {
 	
 	@Test
 	public void testVerIngredientes(){
-		Assert.assertEquals(3, unRicoSanguche.verIngredientes().size());
+		unRicoSanguche.vaciar();
+		unRicoSanguche.agregarIngrediente(pan);
+		unRicoSanguche.agregarIngrediente(pan);
+		unRicoSanguche.agregarIngrediente(jamon);
+		unRicoSanguche.agregarIngrediente(queso);
+		unRicoSanguche.agregarIngrediente(ketchup);		
+		Assert.assertEquals(4, unRicoSanguche.verIngredientes().size());
 	}
 
 	@Test
-	public void testVerCondimentos(){		
+	public void testVerCondimentos(){
+		unRicoSanguche.vaciar();
+		unRicoSanguche.agregarIngrediente(pan);
+		unRicoSanguche.agregarIngrediente(pan);
+		unRicoSanguche.agregarIngrediente(jamon);
+		unRicoSanguche.agregarIngrediente(queso);
+		unRicoSanguche.agregarIngrediente(ketchup);			
 		Assert.assertEquals(1, unRicoSanguche.verCondimentos().size());
 	}
 	
